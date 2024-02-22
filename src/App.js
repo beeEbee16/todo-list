@@ -39,6 +39,20 @@ const handleDelete = (id) => {
   localStorage.setItem('TodoList', JSON.stringify(listItems));
 }
 
+const handleEdit = (id) => {
+  const listItems = tasks.map((task) => task.id === id ? {...task, editing: !task.editing} : task);
+  setTasks(listItems);
+  localStorage.setItem('TodoList', JSON.stringify(listItems));
+}
+
+const handleCancel = (id) => {
+  const listItems = tasks.map((task) => task.id === id ? {...task, editing: false} : task);
+  setTasks(listItems);
+  localStorage.setItem('TodoList', JSON.stringify(listItems));
+}
+
+
+
 
   return (
     <div className="App">
@@ -57,7 +71,9 @@ const handleDelete = (id) => {
       <FormList 
         items={tasks.filter(item => ((item.taskDesc).toLowerCase()).includes(search.toLowerCase()))}
         handleCheck={handleCheck}
+        handleEdit={handleEdit}
         handleDelete={handleDelete}
+        handleCancel={handleCancel}
       />
     </div>
   );
