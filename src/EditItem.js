@@ -15,6 +15,11 @@ const EditItem = ({item, handleSave, handleCancel, editTaskItem, setEditTaskItem
             onChange={(e) => {
                 setEditTaskItem(e.target.value);
             }}
+            onKeyDown={(e) => {
+                if (e.key === 'Enter') {
+                    handleSave(item.id);
+                }
+            }}
         />
         <FaSave
         role='button'

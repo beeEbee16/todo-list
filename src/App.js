@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import './App.css';
 import FormInput from './FormInput';
 import FormList from './FormList';
@@ -8,8 +8,13 @@ import SearchInput from './SearchInput';
 function App() {
 
 const [newTaskItem, setNewTaskItem] = useState('');
-const [tasks, setTasks] = useState(JSON.parse(localStorage.getItem('TodoList')));
+const [tasks, setTasks] = useState(JSON.parse(localStorage.getItem('TodoList')) || []);
 const [search, setSearch] = useState('');
+const [editTaskItem, setEditTaskItem] = useState('');
+
+useEffect(() => {
+  localStorage.setItem('TodoList', JSON.stringify(tasks));
+}, [tasks])
 
 const addTask = (taskDesc) => {
 
@@ -17,7 +22,6 @@ const addTask = (taskDesc) => {
   const myNewTask = {id, completed: false, taskDesc};
   const listItems = [...tasks, myNewTask];
   setTasks(listItems);
-  localStorage.setItem('TodoList', JSON.stringify(listItems));
 }
 
 const whenSubmit = (e) => {
@@ -30,25 +34,27 @@ const whenSubmit = (e) => {
 const handleCheck = (id) => {
   const listItems = tasks.map((task) => task.id === id ? {...task, checked: !task.checked} : task);
   setTasks(listItems);
-  localStorage.setItem('TodoList', JSON.stringify(listItems));
 }
 
 const handleDelete = (id) => {
   const listItems = tasks.filter((task) => task.id !== id);
   setTasks(listItems);
-  localStorage.setItem('TodoList', JSON.stringify(listItems));
 }
 
 const handleEdit = (id) => {
   const listItems = tasks.map((task) => task.id === id ? {...task, editing: !task.editing} : task);
   setTasks(listItems);
-  localStorage.setItem('TodoList', JSON.stringify(listItems));
 }
+
+const handleSave = (id) => {
+  const listItems = tasks.map((task) => task.id === id ? {...task, taskDesc: editTaskItem, editing: false} : task);
+  setTasks(listItems);
+}
+
 
 const handleCancel = (id) => {
   const listItems = tasks.map((task) => task.id === id ? {...task, editing: false} : task);
   setTasks(listItems);
-  localStorage.setItem('TodoList', JSON.stringify(listItems));
 }
 
 
@@ -72,8 +78,11 @@ const handleCancel = (id) => {
         items={tasks.filter(item => ((item.taskDesc).toLowerCase()).includes(search.toLowerCase()))}
         handleCheck={handleCheck}
         handleEdit={handleEdit}
+        handleSave={handleSave}
         handleDelete={handleDelete}
         handleCancel={handleCancel}
+        editTaskItem={editTaskItem}
+        setEditTaskItem={setEditTaskItem}
       />
     </div>
   );
