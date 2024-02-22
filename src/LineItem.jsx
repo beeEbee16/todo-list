@@ -1,6 +1,8 @@
 import React from 'react'
+import { FaTrashAlt } from 'react-icons/fa';
+import { FaEdit } from 'react-icons/fa';
 
-const LineItem = ({ item, handleCheck, handleDelete}) => {
+const LineItem = ({ item, handleCheck, handleDelete, handleEdit}) => {
   return (
     <li className='item' key={item.id}>
         <input 
@@ -12,9 +14,16 @@ const LineItem = ({ item, handleCheck, handleDelete}) => {
             style={(item.checked) ? {textDecoration: 'line-through'} : null}
             onClick={() => handleCheck(item.id)}
         >{item.taskDesc}</label>
-        <button className='btnDelete' style={{cursor: 'pointer'}}>X</button>
-        { /* https://youtu.be/XyIXMQ9SZmI?list=PL0Zuz27SZ-6PrE9srvEn8nbhOOyxnWXfp&t=1266
-            add delete button */ }
+        <FaEdit 
+            role='button'
+            className='btn'
+            onClick={() => handleEdit(item.id)}
+          />
+          <FaTrashAlt
+            role='button'
+            className='btn'
+            onClick={() => handleDelete(item.id)}
+          />     
     </li>
   )
 }

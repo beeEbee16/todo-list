@@ -1,4 +1,4 @@
-* {
+.App {
   background-color: #DEE2D6;
 }
 
@@ -14,9 +14,33 @@ body {
   flex-direction: column;
 }
 
-ul {
+li {
   list-style: none;
   text-align: center;
+}
+
+.searchInput label {
+  visibility: hidden;
+}
+
+.item {
+  display: flex;
+  /* justify-content: flex-start; */
+  align-items: center;
+  padding: 1rem;
+  margin: 0.5rem 0 .5rem 4.5rem;
+  background-color: #7d7a77;
+  width: 49vw;
+  font-size: 25px;
+  word-wrap: break-word;
+}
+
+.item input[type='checkbox'] {
+  padding: 10px;
+  cursor: pointer;
+  margin-right: auto;
+  height: 2.5rem;
+  width: 2.5rem;
 }
 
 .formList{
@@ -28,9 +52,17 @@ ul {
   margin: auto;
 }
 
-.btnDelete {
-  background-color: black;
-  color: rgb(255, 0, 0);
+.btn {
+  color: rgb(13, 0, 255);
+  justify-content: right;
+  height: 2.5rem;
+  width: 2.5rem;
+  cursor: pointer;
+  font-style: normal;
+  border: none;
+  size: 10rem;
+  background: none;
+  margin: 5px;
 }
 
 .formInput {
@@ -44,11 +76,29 @@ ul {
   width: 50vw;
   margin: auto;
   padding: 10px;
-  display: inline-block;
+  background-color: #DEE2D6;
+  border: 1px solid black;
 }
 
 .todoSubmit {
   cursor: pointer;
   padding: 10px;
   margin: 5px;
+  background-color: papayawhip;
+  border: 1px solid black;
+}
+
+.searchInput {
+  text-align: center;
+  padding-top: 20px;
+}
+
+#search {
+  display: inline-block;
+  justify-content: center;
+  width: 50vw;
+  margin: auto;
+  padding: 10px;
+  background-color: #DEE2D6;
+  border: 1px solid black;
 }
