@@ -19,7 +19,7 @@ useEffect(() => {
 const addTask = (taskDesc) => {
 
   const id = tasks.length ? tasks[tasks.length - 1].id + 1 : 1;
-  const myNewTask = {id, completed: false, taskDesc};
+  const myNewTask = {id, completed: false, checked: false, editing: false, taskDesc};
   const listItems = [...tasks, myNewTask];
   setTasks(listItems);
 }

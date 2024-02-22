@@ -1,5 +1,5 @@
 .App {
-  background-color: #DEE2D6;
+  background-color: #777777;
 }
 
 header {
@@ -16,7 +16,16 @@ body {
 
 li {
   list-style: none;
+  text-align: left;
+  background-color: #343A40;
+  color: white;
+  margin-right: 10px;
+}
+
+li:nth-child(odd) {
+  list-style: none;
   text-align: center;
+  background-color: #494E53;
 }
 
 .searchInput label {
@@ -25,31 +34,27 @@ li {
 
 .item {
   display: flex;
-  /* justify-content: flex-start; */
   align-items: center;
   padding: 1rem;
   margin: 0.5rem 0 .5rem 4.5rem;
-  background-color: #7d7a77;
-  width: 49vw;
+  width: 53vw;
   font-size: 25px;
   word-wrap: break-word;
+  text-align: auto;
+  margin-left: 270px;
+}
+
+.item label {
+  width: 560px;
+  text-align: left;
 }
 
 .item input[type='checkbox'] {
   padding: 10px;
   cursor: pointer;
-  margin-right: auto;
+  margin-right: 20px;
   height: 2.5rem;
   width: 2.5rem;
-}
-
-.formList{
-  justify-content: center;
-  display: flex;
-  border: 2px solid black;
-  width: 50vw;
-  padding: 10px;
-  margin: auto;
 }
 
 .btn {
@@ -80,6 +85,13 @@ li {
   border: 1px solid black;
 }
 
+#editItem {
+  margin-right: 20px;
+  width: 600px;
+  height: 2.5rem;
+  font-size: 20px;
+}
+
 .todoSubmit {
   cursor: pointer;
   padding: 10px;
@@ -89,8 +101,10 @@ li {
 }
 
 .searchInput {
-  text-align: center;
-  padding-top: 20px;
+  display: inline-block;
+  width: 100px;
+  padding-left: 315px;
+  align-self: center;
 }
 
 #search {

@@ -1,3 +1,5 @@
+import { IoMdAdd } from "react-icons/io";
+
 const FormInput = ({ whenSubmit, newTaskItem, setNewTaskItem}) => {
   return (
     <form className='formInput' onSubmit={whenSubmit}>
@@ -13,6 +15,11 @@ const FormInput = ({ whenSubmit, newTaskItem, setNewTaskItem}) => {
           }}
         />
         <button type='submit' className='todoSubmit'>Add</button>
+        {/* <IoMdAdd 
+          type='submit'
+          className='todoSubmit'
+          role='button'
+        /> */}
     </form>
   )
 }
