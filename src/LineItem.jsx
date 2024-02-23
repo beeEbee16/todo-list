@@ -15,13 +15,13 @@ const LineItem = ({ item, handleCheck, handleDelete, handleEdit}) => {
             onClick={() => handleCheck(item.id)}
         >{item.taskDesc}</label>
         <FaEdit 
-            role='button'
+            role='btnEdit'
             className='btn'
             onClick={() => handleEdit(item.id)}
           />
           <FaTrashAlt
             role='button'
-            className='btn'
+            className='btnDelete'
             onClick={() => handleDelete(item.id)}
           />     
     </li>

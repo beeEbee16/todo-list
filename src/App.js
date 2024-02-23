@@ -4,6 +4,7 @@ import FormInput from './FormInput';
 import FormList from './FormList';
 import { useState } from 'react';
 import SearchInput from './SearchInput';
+import RadioFilter from './RadioFilter';
 
 function App() {
 
@@ -11,6 +12,7 @@ const [newTaskItem, setNewTaskItem] = useState('');
 const [tasks, setTasks] = useState(JSON.parse(localStorage.getItem('TodoList')) || []);
 const [search, setSearch] = useState('');
 const [editTaskItem, setEditTaskItem] = useState('');
+const [optionItem, setOptionItem] = useState('allTasks');
 
 useEffect(() => {
   localStorage.setItem('TodoList', JSON.stringify(tasks));
@@ -57,9 +59,6 @@ const handleCancel = (id) => {
   setTasks(listItems);
 }
 
-
-
-
   return (
     <div className="App">
       <header>
@@ -74,8 +73,12 @@ const handleCancel = (id) => {
         search={search}
         setSearch={setSearch}
       />
+      <RadioFilter
+        optionItem={optionItem}
+        setOptionItem={setOptionItem}
+      />
       <FormList 
-        items={tasks.filter(item => ((item.taskDesc).toLowerCase()).includes(search.toLowerCase()))}
+        items={tasks.filter(item => ((item.taskDesc).toLowerCase()).includes(search.toLowerCase()) && ((optionItem === 'allTasks') || (optionItem === 'completeTasks' && item.checked) || (optionItem === 'incompleteTasks' && !item.checked)))}
         handleCheck={handleCheck}
         handleEdit={handleEdit}
         handleSave={handleSave}
