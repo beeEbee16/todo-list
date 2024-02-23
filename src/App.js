@@ -60,34 +60,38 @@ const handleCancel = (id) => {
 }
 
   return (
-    <div className="App">
-      <header>
-        Todo List
-      </header>
-      <FormInput 
-        whenSubmit={whenSubmit}
-        newTaskItem={newTaskItem}
-        setNewTaskItem={setNewTaskItem}
-        />
-      <SearchInput
-        search={search}
-        setSearch={setSearch}
-      />
-      <RadioFilter
-        optionItem={optionItem}
-        setOptionItem={setOptionItem}
-      />
-      <FormList 
-        items={tasks.filter(item => ((item.taskDesc).toLowerCase()).includes(search.toLowerCase()) && ((optionItem === 'allTasks') || (optionItem === 'completeTasks' && item.checked) || (optionItem === 'incompleteTasks' && !item.checked)))}
-        handleCheck={handleCheck}
-        handleEdit={handleEdit}
-        handleSave={handleSave}
-        handleDelete={handleDelete}
-        handleCancel={handleCancel}
-        editTaskItem={editTaskItem}
-        setEditTaskItem={setEditTaskItem}
-      />
-    </div>
+    <body>
+      <main>
+        <div className="App">
+          <header>
+            Todo List
+          </header>
+          <FormInput 
+            whenSubmit={whenSubmit}
+            newTaskItem={newTaskItem}
+            setNewTaskItem={setNewTaskItem}
+            />
+          <SearchInput
+            search={search}
+            setSearch={setSearch}
+          />
+          <RadioFilter
+            optionItem={optionItem}
+            setOptionItem={setOptionItem}
+          />
+          <FormList 
+            items={tasks.filter(item => ((item.taskDesc).toLowerCase()).includes(search.toLowerCase()) && ((optionItem === 'allTasks') || (optionItem === 'completeTasks' && item.checked) || (optionItem === 'incompleteTasks' && !item.checked)))}
+            handleCheck={handleCheck}
+            handleEdit={handleEdit}
+            handleSave={handleSave}
+            handleDelete={handleDelete}
+            handleCancel={handleCancel}
+            editTaskItem={editTaskItem}
+            setEditTaskItem={setEditTaskItem}
+          />
+        </div>
+      </main>
+    </body>
   );
 }
 

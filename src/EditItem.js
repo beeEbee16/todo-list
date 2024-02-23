@@ -28,7 +28,7 @@ const EditItem = ({item, handleSave, handleCancel, editTaskItem, setEditTaskItem
         />
         <MdCancel 
         role='button'
-        className='btn'
+        className='btnCancel'
         onClick={() => handleCancel(item.id)}
         />
     </li>

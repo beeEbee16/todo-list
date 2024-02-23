@@ -82,12 +82,38 @@ input[type='radio'] {
   cursor: pointer;
   font-style: normal;
   border: none;
-  size: 10rem;
+  size: 20rem;
+  background: none;
+  margin: 5px;
+}
+
+.todoSubmit {
+  color: rgb(0, 120, 215);
+  justify-content: right;
+  height: 3rem;
+  width: 3rem;
+  cursor: pointer;
+  font-style: normal;
+  border: none;
+  size: 20rem;
   background: none;
   margin: 5px;
 }
 
 .btnDelete {
+  color: red;
+  justify-content: right;
+  height: 2.5rem;
+  width: 2.5rem;
+  cursor: pointer;
+  font-style: normal;
+  border: none;
+  size: 10rem;
+  background: none;
+  margin: 5px;
+}
+
+.btnCancel {
   color: red;
   justify-content: right;
   height: 2.5rem;
@@ -113,13 +139,14 @@ input[type='radio'] {
   padding: 10px;
   background-color: rgb(216, 216, 216);
   border: 1px solid black;
+  font-size: 25px;
 }
 
 #editItem {
   margin-right: 20px;
   width: 600px;
   height: 2.5rem;
-  font-size: 20px;
+  font-size: 25px;
   background-color: rgb(216, 216, 216);
 }
 
@@ -149,4 +176,5 @@ input[type='radio'] {
   padding: 10px;
   background-color: rgb(216, 216, 216);
   border: 1px solid black;
+  font-size: 25px;
 }
