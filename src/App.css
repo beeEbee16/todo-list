@@ -113,6 +113,32 @@ input[type='radio'] {
   margin: 5px;
 }
 
+.btnEdit {
+  color: rgb(0, 120, 215);
+  justify-content: right;
+  height: 2.5rem;
+  width: 2.5rem;
+  cursor: pointer;
+  font-style: normal;
+  border: none;
+  size: 10rem;
+  background: none;
+  margin: 5px;
+}
+
+.btnAdd {
+  color: rgb(0, 255, 0);
+  justify-content: right;
+  height: 2.5rem;
+  width: 2.5rem;
+  cursor: pointer;
+  font-style: normal;
+  border: none;
+  size: 10rem;
+  background: none;
+  margin: 5px;
+}
+
 .btnCancel {
   color: red;
   justify-content: right;

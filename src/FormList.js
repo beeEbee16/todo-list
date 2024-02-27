@@ -2,7 +2,7 @@ import LineItem from './LineItem';
 import EditItem from './EditItem';
 
 
-const FormList = ({ items, handleCheck, handleDelete, handleEdit, handleSave, handleCancel, editTaskitem, setEditTaskItem }) => { 
+const FormList = ({ items, handleCheck, handleDelete, handleEdit, handleSave, handleCancel, editTaskitem, setEditTaskItem, handleAdd }) => { 
   return (
       <ul>
         {items.map((item) => (
@@ -22,6 +22,11 @@ const FormList = ({ items, handleCheck, handleDelete, handleEdit, handleSave, ha
                 handleCheck={handleCheck}
                 handleEdit={handleEdit}
                 handleDelete={handleDelete}
+                handleAdd={handleAdd}
+                handleSave={handleSave}
+                handleCancel={handleCancel}
+                editTaskitem={editTaskitem}
+                setEditTaskItem={setEditTaskItem}
               />)
         ))}
       </ul>

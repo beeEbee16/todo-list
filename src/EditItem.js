@@ -3,7 +3,7 @@ import { MdCancel } from "react-icons/md";
 import { FaSave } from "react-icons/fa";
 
 
-const EditItem = ({item, handleSave, handleCancel, editTaskItem, setEditTaskItem}) => {
+const EditItem = ({ item, handleSave, handleCancel, editTaskItem, setEditTaskItem }) => {
   return (
     <li className='item' key={item.id}>
         <input
