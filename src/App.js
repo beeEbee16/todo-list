@@ -39,14 +39,6 @@ const handleCheck = (item) => {
   let listItems = tasks.map((task) => task.id === item.id ? {...task, checked: !task.checked} : task);
   listItems = listItems.map((child) => child.parentId === item.id ? {...child, checked: item.checked ? child.checked : true} : child);
   setTasks(listItems);
-  checkChildren(item.id);
-}
-
-const checkChildren = (id) => {
-  const children = tasks.filter((task) => task.parentId === id);
-  children.forEach((child) => {
-    console.log(child);
-  });
 }
 
 const handleDelete = (id) => {

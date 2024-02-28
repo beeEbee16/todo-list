@@ -57,11 +57,12 @@ const LineItem = ({ item, tasks, handleCheck, handleDelete, handleEdit, handleAd
             className='btnEdit'
             onClick={() => handleEdit(item.id)}
           />
-        <IoMdAdd
+        {item.parentId === 0 ? (
+          <IoMdAdd
             role='button'
             className='btnAdd'
             onClick={() => handleAdd(item.id)}
-        />
+        />) : null}
           <FaTrashAlt
             role='button'
             className='btnDelete'
