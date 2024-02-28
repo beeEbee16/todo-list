@@ -28,17 +28,27 @@ const addTask = (taskDesc) => {
 const whenSubmit = (e) => {
   e.preventDefault();
   if (!newTaskItem) return;
+  if (newTaskItem.trim() === '') {
+    alert('Please enter an item');
+  } else {
   addTask(newTaskItem);
   setNewTaskItem('');
-}
+}}
 
 const handleCheck = (id) => {
-  const listItems = tasks.map((task) => task.id === id ? {...task, checked: !task.checked} : task);
+  let listItems = tasks.map((task) => task.id === id ? {...task, checked: !task.checked} : task);
+  //listItems = tasks.map((child) => child.parentId === id ? {...child, checked: true} : child);
+  setTasks(listItems);
+  //checkChildren(id);
+}
+
+const checkChildren = (id) => {
+  //const children = tasks.filter((task) => task.parentId === id);
+  const listItems = tasks.map((child) => child.parentId === id ? {...child, checked: true} : child);
   setTasks(listItems);
 }
 
 const handleDelete = (id) => {
-  console.log('deleting');
   const listItems = tasks.filter((task) => task.id !== id);
   setTasks(listItems);
 }
@@ -49,22 +59,29 @@ const handleEdit = (id) => {
 }
 
 const handleSave = (id) => {
+  if (editTaskItem.trim() === '') {
+    alert('Please enter an item');
+  } else {
   const listItems = tasks.map((task) => task.id === id ? {...task, taskDesc: editTaskItem, editing: false} : task);
   setTasks(listItems);
-}
+}}
 
 
 const handleCancel = (id) => {
-  const task = tasks.filter((task) => task.id === id);
-  const listItems = tasks.map((task) => task.id === id ? {...task, editing: false} : task);
-  setTasks(listItems);
-}
+  const myTask = tasks.filter((task) => task.id === id);
+  if (myTask[0].taskDesc === '') {
+    handleDelete(id);
+  } else {
+    const listItems = tasks.map((task) => task.id === id ? {...task, editing: false} : task);
+    setTasks(listItems);
+}}
 
 const handleAdd = (id) => {
   const newId = tasks.length ? tasks[tasks.length - 1].id + 1 : 1;
   const myChildTask = {id: newId, completed: false, checked: false, editing: true, taskDesc: '', parentId: id};
   const listItems = [...tasks, myChildTask];
   setTasks(listItems);
+  setEditTaskItem('');
 }
 
   return (

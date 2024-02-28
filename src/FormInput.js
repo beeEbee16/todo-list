@@ -9,6 +9,7 @@ const FormInput = ({ whenSubmit, newTaskItem, setNewTaskItem}) => {
           id='addItem' 
           placeholder='Add Item' 
           autoFocus
+          required
           value={newTaskItem}
           onChange={(e) => {
             setNewTaskItem(e.target.value);
