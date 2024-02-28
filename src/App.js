@@ -20,7 +20,7 @@ useEffect(() => {
 
 const addTask = (taskDesc) => {
   const id = tasks.length ? tasks[tasks.length - 1].id + 1 : 1;
-  const myNewTask = {id, completed: false, checked: false, editing: false, taskDesc, parentId: 0};
+  const myNewTask = {id, checked: false, editing: false, taskDesc, parentId: 0};
   const listItems = [...tasks, myNewTask];
   setTasks(listItems);
 }
@@ -35,17 +35,18 @@ const whenSubmit = (e) => {
   setNewTaskItem('');
 }}
 
-const handleCheck = (id) => {
-  let listItems = tasks.map((task) => task.id === id ? {...task, checked: !task.checked} : task);
-  //listItems = tasks.map((child) => child.parentId === id ? {...child, checked: true} : child);
+const handleCheck = (item) => {
+  let listItems = tasks.map((task) => task.id === item.id ? {...task, checked: !task.checked} : task);
+  listItems = listItems.map((child) => child.parentId === item.id ? {...child, checked: item.checked ? child.checked : true} : child);
   setTasks(listItems);
-  //checkChildren(id);
+  checkChildren(item.id);
 }
 
 const checkChildren = (id) => {
-  //const children = tasks.filter((task) => task.parentId === id);
-  const listItems = tasks.map((child) => child.parentId === id ? {...child, checked: true} : child);
-  setTasks(listItems);
+  const children = tasks.filter((task) => task.parentId === id);
+  children.forEach((child) => {
+    console.log(child);
+  });
 }
 
 const handleDelete = (id) => {
@@ -78,7 +79,7 @@ const handleCancel = (id) => {
 
 const handleAdd = (id) => {
   const newId = tasks.length ? tasks[tasks.length - 1].id + 1 : 1;
-  const myChildTask = {id: newId, completed: false, checked: false, editing: true, taskDesc: '', parentId: id};
+  const myChildTask = {id: newId, checked: false, editing: true, taskDesc: '', parentId: id};
   const listItems = [...tasks, myChildTask];
   setTasks(listItems);
   setEditTaskItem('');

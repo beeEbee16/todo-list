@@ -45,12 +45,12 @@ const LineItem = ({ item, tasks, handleCheck, handleDelete, handleEdit, handleAd
     <li className='item' key={item.id}>
         <input 
             type="checkbox"
-            onChange={() => handleCheck(item.id)}
+            onChange={() => handleCheck(item)}
             checked={item.checked} 
         />
         <label 
             style={(item.checked) ? {textDecoration: 'line-through'} : null}
-            onClick={() => handleCheck(item.id)}
+            onClick={() => handleCheck(item)}
         >{item.taskDesc}</label>
         <FaEdit 
             role='button'
