@@ -2,10 +2,13 @@ import LineItem from './LineItem';
 import EditItem from './EditItem';
 
 
-const FormList = ({ items, handleCheck, handleDelete, handleEdit, handleSave, handleCancel, editTaskitem, setEditTaskItem, handleAdd }) => { 
+const FormList = ({ items, tasks, handleCheck, handleDelete, handleEdit, handleSave, handleCancel, editTaskitem, setEditTaskItem, handleAdd }) => { 
+  const parentTasks = items.filter((item) => item.parentId === 0)
   return (
       <ul>
-        {items.map((item) => (
+        {/* tasks.filter((task) => task.id !== id); */}
+        {parentTasks.map((item) => (  
+        //{items.map((item) => (
             item.editing ? (
               <EditItem
                 key={item.id}
@@ -19,6 +22,7 @@ const FormList = ({ items, handleCheck, handleDelete, handleEdit, handleSave, ha
               <LineItem
                 key={item.id}
                 item={item}
+                tasks={tasks}
                 handleCheck={handleCheck}
                 handleEdit={handleEdit}
                 handleDelete={handleDelete}

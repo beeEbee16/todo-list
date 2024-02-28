@@ -5,14 +5,15 @@ import { IoMdAdd } from "react-icons/io";
 import EditItem from './EditItem';
 
 
-const LineItem = ({ item, handleCheck, handleDelete, handleEdit, handleAdd, handleSave, handleCancel, editTaskItem, setEditTaskItem }) => {
+const LineItem = ({ item, tasks, handleCheck, handleDelete, handleEdit, handleAdd, handleSave, handleCancel, editTaskItem, setEditTaskItem }) => {
 
-  let children = null;
-  if (item.children.length) {
+  let children = null
+  const filteredTasks = tasks.filter((task) => task.parentId === item.id);
+  if (filteredTasks.length) {
     children = (
       <div>
       <ul>
-          {item.children.map((childItem) => (
+          {filteredTasks.map((childItem) => (
             childItem.editing ? (
               <EditItem 
                 item={childItem} 
@@ -24,6 +25,7 @@ const LineItem = ({ item, handleCheck, handleDelete, handleEdit, handleAdd, hand
               ) : (
               <LineItem 
                 item={childItem} 
+                tasks={tasks}
                 key={childItem.id} 
                 handleCheck={handleCheck} 
                 handleDelete={handleDelete} 

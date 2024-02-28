@@ -20,7 +20,7 @@ useEffect(() => {
 
 const addTask = (taskDesc) => {
   const id = tasks.length ? tasks[tasks.length - 1].id + 1 : 1;
-  const myNewTask = {id, completed: false, checked: false, editing: false, taskDesc, parentId: 0, childId: 0, children: []};
+  const myNewTask = {id, completed: false, checked: false, editing: false, taskDesc, parentId: 0};
   const listItems = [...tasks, myNewTask];
   setTasks(listItems);
 }
@@ -38,6 +38,7 @@ const handleCheck = (id) => {
 }
 
 const handleDelete = (id) => {
+  console.log('deleting');
   const listItems = tasks.filter((task) => task.id !== id);
   setTasks(listItems);
 }
@@ -45,8 +46,6 @@ const handleDelete = (id) => {
 const handleEdit = (id) => {
   const listItems = tasks.map((task) => task.id === id ? {...task, editing: !task.editing} : task);
   setTasks(listItems);
-  console.log('Here ' + id);
-  console.log(listItems);
 }
 
 const handleSave = (id) => {
@@ -56,16 +55,15 @@ const handleSave = (id) => {
 
 
 const handleCancel = (id) => {
+  const task = tasks.filter((task) => task.id === id);
   const listItems = tasks.map((task) => task.id === id ? {...task, editing: false} : task);
   setTasks(listItems);
 }
 
 const handleAdd = (id) => {
-  const parentTask = tasks.filter((task) => task.id === id);
-  const childId = parentTask[0].children.length ? parentTask[0].children[parentTask[0].children.length - 1].childId + 1 : 1;
-  const myChildTask = {id: id + '.' + childId, completed: false, checked: false, editing: true, childId: childId, taskDesc: '', parentId: id, children: []};
-  const childrenTasks = [...parentTask[0].children, myChildTask];
-  const listItems = tasks.map((task) => task.id === id ? {...task, children: childrenTasks} : task);
+  const newId = tasks.length ? tasks[tasks.length - 1].id + 1 : 1;
+  const myChildTask = {id: newId, completed: false, checked: false, editing: true, taskDesc: '', parentId: id};
+  const listItems = [...tasks, myChildTask];
   setTasks(listItems);
 }
 
@@ -91,6 +89,7 @@ const handleAdd = (id) => {
           />
           <FormList 
             items={tasks.filter(item => ((item.taskDesc).toLowerCase()).includes(search.toLowerCase()) && ((optionItem === 'allTasks') || (optionItem === 'completeTasks' && item.checked) || (optionItem === 'incompleteTasks' && !item.checked)))}
+            tasks={tasks}
             handleCheck={handleCheck}
             handleEdit={handleEdit}
             handleSave={handleSave}
