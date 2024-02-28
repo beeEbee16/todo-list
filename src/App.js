@@ -37,7 +37,12 @@ const whenSubmit = (e) => {
 
 const handleCheck = (item) => {
   let listItems = tasks.map((task) => task.id === item.id ? {...task, checked: !task.checked} : task);
-  listItems = listItems.map((child) => child.parentId === item.id ? {...child, checked: item.checked ? child.checked : true} : child);
+
+  if (!item.checked) {
+    listItems = listItems.map((child) => child.parentId === item.id ? {...child, checked: item.checked ? child.checked : true} : child);
+  } else {
+    listItems = listItems.map((child) => child.id === item.parentId ? {...child, checked: false} : child);
+  }
   setTasks(listItems);
 }
 
