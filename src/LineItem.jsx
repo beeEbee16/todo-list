@@ -12,7 +12,7 @@ const LineItem = ({ item, tasks, handleCheck, handleDelete, handleEdit, handleAd
   if (filteredTasks.length) {
     children = (
       <div>
-      <ul>
+      <ul className='childItems'>
           {filteredTasks.map((childItem) => (
             childItem.editing ? (
               <EditItem 
